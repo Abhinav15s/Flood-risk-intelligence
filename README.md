@@ -14,15 +14,16 @@
 flood-risk-intelligence/        # GitHub root
 ├── README.md                   # Project showcase
 ├── requirements.txt            # Python dependencies (pip install -r requirements.txt)
-├── .gitignore                  # Excludes *.parquet, *.pkl
+├── .gitignore                  # Excludes *.parquet, *.pkl, outputs/
 ├── notebook/                   # Core analysis
 │   └── main.ipynb              # 48-cell analysis pipeline — the technical centrepiece
 ├── app/                        # Streamlit dashboard
 │   ├── app.py                  # 4-page portfolio dashboard
 │   └── generate_report.py      # PDF report generator (ReportLab)
-├── outputs/                    # Pre-generated artefacts
+├── outputs/                    # Pre-generated artefacts — tracked in git
 │   ├── flood_risk_report.pdf   # Portfolio PDF
-│   └── flood_analysis_summary.json # Machine-readable findings
+│   ├── flood_analysis_summary.json # Machine-readable findings
+│   └── charts/                 # Static charts + interactive Plotly files
 └── assets/                     # Screenshots for README
     └── dashboard_preview.png   # Dashboard screenshot
 ```
@@ -39,15 +40,17 @@ flood-risk-intelligence/        # GitHub root
 - 🗺️ **100 highest-risk zones** identified globally
 - 🔍 **5 flood cluster types** discovered (monsoon, flash, river, coastal, catastrophic)
 
-## 🚀 Live Demo
-
-**[Interactive Streamlit Dashboard](https://share.streamlit.io/)**
-
-**[Full Technical Report (25 pages)](outputs/flood_risk_report.pdf)**
-
 ## 📊 Key Visualizations
 
-![Dashboard Preview](assets/dashboard_preview.png)
+| Temporal Trends | Risk Assessment | ML Results |
+|---------------|---------------|------------|
+| ![Events Trend](outputs/charts/events_per_year_trend.png) | ![Clusters](outputs/charts/flood_clusters_pca.png) | ![Confusion Matrix](outputs/charts/confusion_matrix.png) |
 
 ## 🛠️ Technical Stack
+- **Languages:** Python (Pandas, Scikit-learn, Plotly)
+- **Dashboard:** Streamlit
+- **Reporting:** ReportLab (PDF)
+- **Deployment:** GitHub Pages / Streamlit Cloud
 
+---
+*Created by [Abhinav15s](https://github.com/Abhinav15s)*
