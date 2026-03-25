@@ -1,6 +1,10 @@
-# Data Directory
+# Dataset
 
-This directory is intended for raw and processed datasets used by the Flood Risk Intelligence project.
-Large data files are not tracked by version control (excluded in `.gitignore`).
+**The Google Research Groundsource Dataset (2026)** used in this analysis is extremely large (~300MB). To keep the repository lean and performant, data files are excluded from version control.
 
-Please place your raw CSV or other data formats here before running the analysis notebook or application.
+### Instructions
+
+1. Download the dataset from Zenodo: [https://zenodo.org/record/18647054](https://zenodo.org/record/18647054)
+2. Extract and place the dataset directly into this `data/` directory.
+
+> **Note:** `.parquet` or `.pkl` files placed here run no risk of being committed as they are strictly blocked by `.gitignore`.
