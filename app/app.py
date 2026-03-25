@@ -253,7 +253,7 @@ def base_layout(title="", height=400):
 def load_data():
     """Try loading parquet; fall back to pre-computed summary data."""
     try:
-        df = pd.read_parquet('./outputs/groundsource_with_coords.parquet')
+        df = pd.read_parquet('./data/groundsource_with_coords.parquet')
         df['year']  = df['start_date'].dt.year
         df['month'] = df['start_date'].dt.month
         df['duration_days'] = (df['end_date'] - df['start_date']).dt.total_seconds() / 86400
@@ -406,7 +406,7 @@ if "Overview" in page:
     ), secondary_y=True)
     lo = base_layout(height=380)
     lo.update({'yaxis': dict(gridcolor=GRID_COL, tickfont=dict(size=10), title="Flood Events"),
-               'yaxis2': dict(title="Area Affected (km²)", tickfont=dict(size=10), gridcolor='transparent', overlaying='y', side='right')})
+               'yaxis2': dict(title="Area Affected (km²)", tickfont=dict(size=10), gridcolor='rgba(0,0,0,0)', overlaying='y', side='right')})
     fig.update_layout(**lo)
     st.plotly_chart(fig, use_container_width=True)
 
@@ -596,8 +596,30 @@ elif "Risk" in page:
         </div>
         """, unsafe_allow_html=True)
 
+    # ── GLOBAL HEATMAP ──
+    st.markdown("<div class='section-header' style='margin-top:2rem'>Global Flood Density Heatmap</div>", unsafe_allow_html=True)
+    st.markdown("<div class='section-sub'>HEATMAP OF HISTORICAL CLIMATE VULNERABILITY ZONES</div>", unsafe_allow_html=True)
+    
+    if df is not None:
+        # Sample to 100k points to prevent browser freeze due to 2.6M rows
+        heat_df = df.sample(min(100000, len(df)), random_state=42)
+        fig_heat = px.density_mapbox(
+            heat_df, lat='latitude', lon='longitude', z='area_km2',
+            radius=6, center=dict(lat=20, lon=0), zoom=1.2,
+            mapbox_style="carto-darkmatter",
+            color_continuous_scale="Inferno",
+            opacity=0.8
+        )
+        fig_heat.update_layout(
+            margin=dict(l=0,r=0,b=0,t=0), height=500,
+            paper_bgcolor=PAPER_BG, plot_bgcolor=PLOT_BG
+        )
+        st.plotly_chart(fig_heat, use_container_width=True)
+    else:
+        st.error("Global Heatmap requires the total dataset (data/groundsource_with_coords.parquet) to be present.")
+
     # Size distribution
-    st.markdown("<div class='section-header' style='margin-top:2rem'>Event Size Distribution</div>", unsafe_allow_html=True)
+    st.markdown("<div class='section-header' style='margin-top:3rem'>Event Size Distribution</div>", unsafe_allow_html=True)
     st.markdown("<div class='section-sub'>86.6% OF EVENTS ARE SMALL-SCALE (<100 KM²) — BUT LARGE EVENTS DOMINATE TOTAL AREA</div>", unsafe_allow_html=True)
 
     c1, c2 = st.columns(2)
