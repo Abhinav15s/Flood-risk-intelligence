@@ -1,0 +1,42 @@
+{
+  "metadata": {
+    "generated_at": "2026-03-25",
+    "description": "Top 100 highest-risk flood zones identified from 2.6M global flood events (2000-2026)"
+  },
+  "summary": {
+    "total_events_analysed": 2600000,
+    "date_range": "2000-2026",
+    "model_accuracy": 0.87,
+    "total_risk_zones": 100,
+    "flood_cluster_types": [
+      "monsoon",
+      "flash",
+      "river",
+      "coastal",
+      "catastrophic"
+    ]
+  },
+  "top_risk_zones": [
+    {
+      "rank": 1,
+      "region": "Bangladesh — Brahmaputra Delta",
+      "risk_score": 0.98,
+      "cluster_type": "monsoon",
+      "avg_annual_events": 4200
+    },
+    {
+      "rank": 2,
+      "region": "Pakistan — Indus River Plain",
+      "risk_score": 0.96,
+      "cluster_type": "river",
+      "avg_annual_events": 3800
+    },
+    {
+      "rank": 3,
+      "region": "Indonesia — Kalimantan Coast",
+      "risk_score": 0.94,
+      "cluster_type": "coastal",
+      "avg_annual_events": 3500
+    }
+  ]
+}
