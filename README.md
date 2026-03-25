@@ -2,6 +2,8 @@
 
 **AI-powered flood risk intelligence platform built on 2.6M global events**
 
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://flood-risk-intelligence.streamlit.app/)
+
 ![Dashboard Preview](assets/dashboard_preview.png)
 
 ## Project Overview
