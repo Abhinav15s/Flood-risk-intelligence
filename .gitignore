@@ -1,6 +1,5 @@
 *.parquet
 *.pkl
-outputs/
 .env
 __pycache__/
 *.py[cod]
