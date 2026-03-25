@@ -1,42 +1,30 @@
 {
-  "metadata": {
-    "generated_at": "2026-03-25",
-    "description": "Top 100 highest-risk flood zones identified from 2.6M global flood events (2000-2026)"
+  "dataset_overview": {
+    "total_records": 2646302,
+    "date_range": "2000-01-01 00:00:00 to 2026-02-03 00:00:00",
+    "memory_usage_mb": 477.5,
+    "total_area_affected_km2": "376544060.0"
   },
-  "summary": {
-    "total_events_analysed": 2600000,
-    "date_range": "2000-2026",
-    "model_accuracy": 0.87,
-    "total_risk_zones": 100,
-    "flood_cluster_types": [
-      "monsoon",
-      "flash",
-      "river",
-      "coastal",
-      "catastrophic"
-    ]
+  "temporal_trends": {
+    "peak_year_events": "2024 (402,012 events)",
+    "peak_year_area": "2024 (54,140,608 km\u00b2)",
+    "growth_rate_events": "261.0x",
+    "growth_rate_area": "167.0x"
   },
-  "top_risk_zones": [
-    {
-      "rank": 1,
-      "region": "Bangladesh — Brahmaputra Delta",
-      "risk_score": 0.98,
-      "cluster_type": "monsoon",
-      "avg_annual_events": 4200
-    },
-    {
-      "rank": 2,
-      "region": "Pakistan — Indus River Plain",
-      "risk_score": 0.96,
-      "cluster_type": "river",
-      "avg_annual_events": 3800
-    },
-    {
-      "rank": 3,
-      "region": "Indonesia — Kalimantan Coast",
-      "risk_score": 0.94,
-      "cluster_type": "coastal",
-      "avg_annual_events": 3500
-    }
+  "seasonal_patterns": {
+    "peak_season": "Spring (449,457 events)",
+    "summer_vs_winter_ratio": "1.7x"
+  },
+  "size_distribution": {
+    "small_floods_pct": "86.6%",
+    "large_floods_count": "116,795 events",
+    "catastrophic_floods": "0 events (none recorded)"
+  },
+  "key_insights": [
+    "Exponential growth in flood monitoring from 2000-2026",
+    "Summer shows highest flood activity (34.4% of all events)",
+    "86.6% of floods are small (<100 km\u00b2), indicating localized events",
+    "No catastrophic floods (>10,000 km\u00b2) recorded in dataset",
+    "Peak activity in 2024 with 402K events and 54M km\u00b2 affected"
   ]
 }
