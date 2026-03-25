@@ -600,9 +600,19 @@ elif "Risk" in page:
     st.markdown("<div class='section-header' style='margin-top:2rem'>Global Flood Density Heatmap</div>", unsafe_allow_html=True)
     st.markdown("<div class='section-sub'>HEATMAP OF HISTORICAL CLIMATE VULNERABILITY ZONES</div>", unsafe_allow_html=True)
     
+    import os
+    sample_path = './data/heatmap_sample.csv'
+    
     if df is not None:
-        # Sample to 100k points to prevent browser freeze due to 2.6M rows
         heat_df = df.sample(min(100000, len(df)), random_state=42)
+    elif os.path.exists(sample_path):
+        heat_df = pd.read_csv(sample_path)
+        st.info("💡 **Portfolio Demo Mode:** Displaying a 25,000-event sample heatmap. The full 300MB dataset is excluded from GitHub for size rules. See `data/README.md` for full implementation.")
+    else:
+        heat_df = None
+        st.error("Global Heatmap requires the total dataset `data/groundsource_with_coords.parquet` or `data/heatmap_sample.csv`.")
+
+    if heat_df is not None:
         fig_heat = px.density_mapbox(
             heat_df, lat='latitude', lon='longitude', z='area_km2',
             radius=6, center=dict(lat=20, lon=0), zoom=1.2,
@@ -615,8 +625,6 @@ elif "Risk" in page:
             paper_bgcolor=PAPER_BG, plot_bgcolor=PLOT_BG
         )
         st.plotly_chart(fig_heat, use_container_width=True)
-    else:
-        st.error("Global Heatmap requires the total dataset (data/groundsource_with_coords.parquet) to be present.")
 
     # Size distribution
     st.markdown("<div class='section-header' style='margin-top:3rem'>Event Size Distribution</div>", unsafe_allow_html=True)
